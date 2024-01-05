@@ -1,23 +1,37 @@
 package com.example.demo;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.input.KeyEvent;
+import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.input.TouchEvent;
 
 public class HelloController {
     @FXML
-    private Button button1;
+    private Button button;
+    @FXML
+    private TextArea leftTextArea;
+    @FXML
+    private TextArea rightTextArea;
 
     @FXML
     public void click(MouseEvent mouseEvent) {
-        System.out.println("aaa");
+        String text = leftTextArea.getText();
+        leftTextArea.setText(toPrettyFormat(text));
     }
 
-//
-//    @FXML
-//    public void buttonEvent(KeyEvent keyEvent) {
-//        System.out.println("aaa");
-//    }
+    /**
+     * 格式化输出JSON字符串
+     * @return 格式化后的JSON字符串
+     */
+    private static String toPrettyFormat(String json) {
+        JsonObject jsonObject = JsonParser.parseString(json).getAsJsonObject();
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        return gson.toJson(jsonObject);
+    }
 }

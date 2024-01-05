@@ -11,13 +11,13 @@
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
-   <TextArea prefHeight="200.0" prefWidth="200.0" wrapText="true" HBox.hgrow="ALWAYS" />
+   <TextArea fx:id="leftTextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" HBox.hgrow="ALWAYS" />
    <VBox alignment="TOP_CENTER"  prefHeight="200.0" prefWidth="100.0" spacing="10.0">
       <children>
-         <Button mnemonicParsing="false" text="Button" fx:id="button1" onMouseClicked="#click" />
-         <CheckBox mnemonicParsing="false" text="CheckBox" />
-         <CheckBox mnemonicParsing="false" text="CheckBox" />
+         <Button mnemonicParsing="false" text="Run" fx:id="button" onMouseClicked="#click" />
+         <CheckBox mnemonicParsing="false" text="去除\n\t" />
+         <CheckBox mnemonicParsing="false" text="Json美化" />
       </children>
    </VBox>
-   <TextArea prefHeight="200.0" prefWidth="200.0" wrapText="true" HBox.hgrow="ALWAYS" />
+   <TextArea fx:id="rightTextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" HBox.hgrow="ALWAYS" />
 </HBox>
