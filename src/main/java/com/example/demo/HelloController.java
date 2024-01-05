@@ -15,18 +15,49 @@ public class HelloController {
     @FXML
     private Button button;
     @FXML
+    private Button button2;
+    @FXML
+    private Button button3;
+    @FXML
     private TextArea leftTextArea;
     @FXML
     private TextArea rightTextArea;
 
     @FXML
-    public void click(MouseEvent mouseEvent) {
+    public void beautyJson(MouseEvent mouseEvent) {
         String text = leftTextArea.getText();
-        leftTextArea.setText(toPrettyFormat(text));
+        try {
+            leftTextArea.setText(toPrettyFormat(text));
+        } catch (Exception e) {
+            leftTextArea.setText(e.toString());
+        }
+    }
+
+    @FXML
+    public void removeUnnecessaryChars(MouseEvent mouseEvent) {
+        String text = leftTextArea.getText();
+        try {
+            leftTextArea.setText(text.replace("\n", "")
+                    .replace("\t", "")
+                    .replace(" ", ""));
+        } catch (Exception e) {
+            leftTextArea.setText(e.toString());
+        }
+    }
+
+    @FXML
+    public void test(MouseEvent mouseEvent) {
+        String text = leftTextArea.getText();
+        try {
+            leftTextArea.setText(text.replaceAll("[\r\n]+", " "));
+        } catch (Exception e) {
+            leftTextArea.setText(e.toString());
+        }
     }
 
     /**
      * 格式化输出JSON字符串
+     *
      * @return 格式化后的JSON字符串
      */
     private static String toPrettyFormat(String json) {
