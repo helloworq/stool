@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import com.github.vertical_blank.sqlformatter.SqlFormatter;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonArray;
@@ -10,6 +11,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.text.StringEscapeUtils;
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 
 public class HelloController {
     @FXML
@@ -37,19 +43,28 @@ public class HelloController {
     public void removeUnnecessaryChars(MouseEvent mouseEvent) {
         String text = leftTextArea.getText();
         try {
-            leftTextArea.setText(text.replace("\n", "")
-                    .replace("\t", "")
-                    .replace(" ", ""));
+            leftTextArea.setText(
+                    text.replace("\n", "")
+                            .replace("\t", "")
+                            .replace(" ", ""));
         } catch (Exception e) {
             leftTextArea.setText(e.toString());
         }
     }
 
+    //"A\n"
     @FXML
     public void test(MouseEvent mouseEvent) {
         String text = leftTextArea.getText();
         try {
-            leftTextArea.setText(text.replaceAll("[\r\n]+", " "));
+            text = text.replaceAll("\"", "")
+                    .replaceAll("\n", "")
+                    .replaceAll("\\+", "")
+                    .replaceAll("\\\\n", "");
+
+            String format = SqlFormatter.format(text);
+
+            leftTextArea.setText(format);
         } catch (Exception e) {
             leftTextArea.setText(e.toString());
         }
