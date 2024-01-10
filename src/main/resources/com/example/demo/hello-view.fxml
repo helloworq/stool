@@ -14,8 +14,8 @@
    <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
       <children>
          <Button fx:id="button" mnemonicParsing="false" onMouseClicked="#beautyJson" text="Json美化" />
-         <Button fx:id="button2" mnemonicParsing="false" onMouseClicked="#removeUnnecessaryChars" text="紧凑展示" />
-         <Button fx:id="button3" mnemonicParsing="false" onMouseClicked="#test" text="测试" />
+         <Button fx:id="button2" mnemonicParsing="false" onMouseClicked="#removeUnnecessaryChars" text="压缩成一行" />
+         <Button fx:id="button3" mnemonicParsing="false" onMouseClicked="#test" text="MySQL格式化" />
       </children>
    </VBox>
    <TextArea fx:id="rightTextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" HBox.hgrow="ALWAYS" />
