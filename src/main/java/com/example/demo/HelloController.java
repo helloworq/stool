@@ -1,25 +1,16 @@
 package com.example.demo;
 
 import com.github.vertical_blank.sqlformatter.core.FormatConfig;
-import com.github.vertical_blank.sqlformatter.languages.Dialect;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.google.gson.stream.JsonReader;
-import com.google.gson.stream.JsonWriter;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.text.StringEscapeUtils;
 import com.github.vertical_blank.sqlformatter.SqlFormatter;
 
-import java.util.Arrays;
-import java.util.Objects;
 import java.util.regex.MatchResult;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -61,7 +52,7 @@ public class HelloController {
 
     //idea中ctrl shift j即可，用完后ctrl z回退
     @FXML
-    public void test(MouseEvent mouseEvent) {
+    public void beautySql(MouseEvent mouseEvent) {
         String text = leftTextArea.getText();
         try {
             text = text.replace("\n", " ").replace("\t", " ");
