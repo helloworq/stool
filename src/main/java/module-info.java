@@ -10,5 +10,6 @@ module com.example.demo {
     requires org.apache.commons.lang3;
     opens com.example.demo to javafx.fxml;
     requires sql.formatter;
+    requires json.path;
     exports com.example.demo;
 }

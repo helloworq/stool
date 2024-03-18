@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
@@ -17,10 +18,17 @@
       <children>
          <Label text="JSON" />
          <Separator prefWidth="200.0" />
-         <HBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="200.0">
+         <HBox alignment="TOP_CENTER" prefHeight="23.0" prefWidth="100.0">
             <children>
-               <Button fx:id="button" mnemonicParsing="false" onMouseClicked="#beautyJson" text="格式化" />
+               <Button fx:id="button" mnemonicParsing="false" onMouseClicked="#beautyJson" prefHeight="23.0" prefWidth="58.0" text="格式化" />
                <Button fx:id="button2" mnemonicParsing="false" onMouseClicked="#removeUnnecessaryChars" text="压缩" />
+            </children>
+         </HBox>
+         <TextField fx:id="textField" />
+         <HBox prefHeight="100.0" prefWidth="200.0">
+            <children>
+               <Button fx:id="extract" onMouseClicked="#jsonPath" mnemonicParsing="false" prefHeight="23.0" prefWidth="52.0" text="提取" />
+               <Button fx:id="diff" onMouseClicked="#diff" mnemonicParsing="false" prefHeight="23.0" prefWidth="52.0" text="diff" />
             </children>
          </HBox>
          <Label text="SQL" />
