@@ -101,7 +101,8 @@ public class HelloController {
         List<String> leftList = new ArrayList<>(List.of(left.split("\n")));
         List<String> rightList = new GsonBuilder()
                 .setObjectToNumberStrategy(ToNumberPolicy.LAZILY_PARSED_NUMBER)
-                .create().fromJson(right, List.class).stream().map(e->e.toString()).toList();
+                .create().fromJson(right, List.class)
+                .stream().map(e -> e.toString()).toList();
         //去除两个list中相同的部分
         List<String> restLeft = leftList.stream().filter(e -> !rightList.contains(e))
                 .map(Object::toString).toList();
