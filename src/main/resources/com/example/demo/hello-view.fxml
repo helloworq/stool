@@ -40,6 +40,9 @@
          <Label text="SQL" />
          <Separator prefWidth="200.0" />
          <Button fx:id="button3" mnemonicParsing="false" onMouseClicked="#beautySql" text="格式化" />
+         <Label text="文件" />
+         <Separator prefWidth="200.0" />
+         <Button fx:id="button4" mnemonicParsing="false" onMouseClicked="#bytes2File" text="字节流转文件" />
       </children>
    </VBox>
    <TextArea fx:id="rightTextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" HBox.hgrow="ALWAYS" />

@@ -14,14 +14,26 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import com.github.vertical_blank.sqlformatter.SqlFormatter;
 
+import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
+import java.util.Base64;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.regex.MatchResult;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 public class HelloController {
+    public Button button4;
     @FXML
     private Button button;
     @FXML
@@ -111,6 +123,39 @@ public class HelloController {
 
         leftTextArea.setText(String.join(",", restLeft));
         rightTextArea.setText(String.join(",", restRight));
+    }
+
+    public static void main(String[] args) {
+        Map<Integer, List<String>> map = new HashMap<>();
+        map.put(1, new ArrayList<>());
+
+        map.compute(1, (k, v) -> {
+            if (Objects.isNull(v) && v.isEmpty()) {
+                return new ArrayList<>();
+            } else {
+                v.add("a");
+            }
+            return v;
+        });
+
+        System.out.println(map);
+
+    }
+
+    public void bytes2File() throws IOException {
+        String json = leftTextArea.getText();
+        String bytes = JsonPath.read(json, "data.bytes");
+
+
+        OutputStream out = Files.newOutputStream(Paths.get("C:\\Users\\lei.zhou\\Desktop\\" +
+                        System.currentTimeMillis() + ".xlsx"),
+                StandardOpenOption.CREATE_NEW);
+
+
+        out.write(Base64.getDecoder().decode(bytes));
+
+
+        out.close();
     }
 
     /**
