@@ -43,6 +43,11 @@
          <Label text="文件" />
          <Separator prefWidth="200.0" />
          <Button fx:id="button4" mnemonicParsing="false" onMouseClicked="#bytes2File" text="字节流转文件" />
+
+         <Label text="m3u8" />
+         <Separator prefWidth="200.0" />
+         <Button fx:id="button5" mnemonicParsing="false" onMouseClicked="#downloadM3u8" text="视频下载" />
+
       </children>
    </VBox>
    <TextArea fx:id="rightTextArea" prefHeight="200.0" prefWidth="200.0" wrapText="true" HBox.hgrow="ALWAYS" />
