@@ -130,7 +130,7 @@ public class HelloController {
         System.out.println(HttpUtil.get(url));
     }
 
-    public void downloadM3u8() throws IOException {
+    public void downloadM3u8() {
         new Thread(() -> {
             try {
                 String url = leftTextArea.getText();
@@ -142,9 +142,7 @@ public class HelloController {
 
                 String urlPrefix = url.substring(0, url.lastIndexOf("/") + 1);
                 String r = HttpUtil.get(url);
-                List<String> urls = Stream.of(r.split("\n"))
-                        .filter(e -> !e.startsWith("#") && e.length() < 22)
-                        .toList();
+                List<String> urls = Stream.of(r.split("\n")).filter(e -> !e.startsWith("#")).toList();
 
                 List<String> saveList = new ArrayList<>();
                 AtomicInteger counter = new AtomicInteger(0);
@@ -153,13 +151,18 @@ public class HelloController {
                     HttpUtil.downloadFile(urlPrefix + u, savePath);
                     saveList.add("file \'" + savePath + "\'");
 
+                    //计算进度
                     Platform.runLater(() -> rightTextArea.setText(counter.getAndIncrement() + " / " + (urls.size() - 1)));
                 });
 
-                saveList.sort(Comparator.comparing(e -> e));
-                Files.writeString(Paths.get(curPath + now + ".txt"),
-                        String.join("\n", saveList), StandardOpenOption.CREATE_NEW);
+                //文件重排序
+                List<String> resSaveList = new LinkedList<>();
+                urls.forEach(u -> resSaveList.add(saveList.stream().filter(e -> e.contains(u)).findFirst().orElse("")));
 
+                //将分片列表信息存入txt
+                Files.writeString(Paths.get(curPath + now + ".txt"), String.join("\n", resSaveList), StandardOpenOption.CREATE_NEW);
+
+                //合并分片
                 String order = basePath + "ffmpeg.exe -f concat -safe 0 -i " + curPath + now + ".txt -c copy " + curPath + now + ".mp4";
                 Runtime.getRuntime().exec(order);
                 Platform.runLater(() -> rightTextArea.setText(urls.size() + " 分片下载完毕，正在合并视频"));
