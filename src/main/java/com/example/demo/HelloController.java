@@ -124,12 +124,6 @@ public class HelloController {
         rightTextArea.setText(String.join(",", restRight));
     }
 
-    public static void main(String[] args) {
-        String url = "https://v.cdnlz3.com/20241206/30539_d819a37d/2000k/hls/mixed.m3u8";//21
-
-        System.out.println(HttpUtil.get(url));
-    }
-
     public void downloadM3u8() {
         new Thread(() -> {
             try {
@@ -175,7 +169,7 @@ public class HelloController {
     public void bytes2File() throws IOException {
         String json = leftTextArea.getText();
         String bytes = JsonPath.read(json, "data.bytes");
-        OutputStream out = Files.newOutputStream(Paths.get("C:\\Users\\zhoudashuai\\Desktop\\" +
+        OutputStream out = Files.newOutputStream(Paths.get("C:\\Users\\lei.zhou\\Desktop\\" +
                         System.currentTimeMillis() + ".xlsx"),
                 StandardOpenOption.CREATE_NEW);
         out.write(Base64.getDecoder().decode(bytes));
